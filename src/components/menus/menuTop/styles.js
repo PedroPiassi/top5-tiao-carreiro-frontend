@@ -16,8 +16,14 @@ export const Container = styled.div`
     }
 `;
 
+export const Title = styled.h1`
+    color: #000;
+`;
+
+
 export const MenuItemStyled = styled(MenuItem)`
     gap: 1rem;
+    color: #000 !important;
 `;
 
 export const Main = styled.div`

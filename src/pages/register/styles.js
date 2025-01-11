@@ -65,12 +65,3 @@ export const ButtonStyled = styled(Button)`
     font-size: 1rem !important;
     font-weight: 900 !important;
 `;
-
-export const ALink = styled.a`
-    font-size: 1rem;
-    color: var(--color-primary);
-
-    margin-top: 1rem;
-    display: flex;
-    justify-content: end;
-`;

@@ -9,7 +9,7 @@ export default createGlobalStyle`
       // colors
       --color-background: background: #ebefed;
       --color-background-hover: #c9d8d0;
-      --color-primary: #004080;
+      --color-primary: #8b4513e6;
     }
 
   * {

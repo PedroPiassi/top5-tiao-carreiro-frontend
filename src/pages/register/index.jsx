@@ -1,12 +1,9 @@
 import { useFormik } from "formik";
-import Cookies from "js-cookie";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
 import {
-  ALink,
   ButtonStyled,
   Container,
   Form,
@@ -19,16 +16,15 @@ import {
 import { IconButton, InputAdornment, TextField } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { formikProps } from "../../utils/formikProps";
-import useAuthService from "../../services/auth";
-import { setUser } from "../../redux/slices/authSlice";
+import useUserervice from "../../services/user";
 
-export const Login = () => {
+export const Register = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { authentication } = useAuthService();
+  const { store } = useUserervice();
   const [showPassword, setShowPassword] = useState(false);
 
   const formikValidation = Yup.object().shape({
+    name: Yup.string().required("O nome é obrigatório"),
     email: Yup.string()
       .email("E-mail inválido")
       .required("O e-mail é obrigatório"),
@@ -37,21 +33,16 @@ export const Login = () => {
 
   const formik = useFormik({
     initialValues: {
+      name: "",
       email: "",
       password: "",
     },
     validationSchema: formikValidation,
     onSubmit: () => {
-      authentication(formik.values)
-        .then((resp) => {
-          dispatch(setUser(resp.data.user));
-
-          if (resp.data.token) {
-            Cookies.set("token", resp.data.token);
-          }
-
-          toast.success("Login efetuado com sucesso.");
-          navigate("/");
+      store(formik.values)
+        .then(() => {
+          toast.success("Cadastro efetuado com sucesso.");
+          navigate("/login");
         })
         .catch((error) => {
           toast.error(error.response.data.message);
@@ -78,10 +69,23 @@ export const Login = () => {
 
         <SectionForm>
           <Form noValidate onSubmit={formik.handleSubmit}>
-            <Title>Faça seu login</Title>
+            <Title>Faça seu Registro</Title>
 
             <InputGroup>
-              <InputLabelStyled>Usuário</InputLabelStyled>
+              <InputLabelStyled>Nome</InputLabelStyled>
+              <TextField
+                {...formikProps("name", formik)}
+                name="name"
+                placeholder="Digite seu nome"
+                fullWidth
+                type="text"
+                size={"small"}
+                required
+              />
+            </InputGroup>
+
+            <InputGroup>
+              <InputLabelStyled>E-mail</InputLabelStyled>
               <TextField
                 {...formikProps("email", formik)}
                 name="email"
@@ -118,12 +122,10 @@ export const Login = () => {
                   ),
                 }}
               />
-
-              <ALink href="register">Registre-se agora!</ALink>
             </div>
 
             <ButtonStyled type="submit" variant="contained">
-              Entrar
+              Cadastrar
             </ButtonStyled>
           </Form>
         </SectionForm>
