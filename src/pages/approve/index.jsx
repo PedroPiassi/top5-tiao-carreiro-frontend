@@ -17,7 +17,6 @@ export const Approve = () => {
     setLoading(true);
     findAll("approved")
       .then((resp) => {
-        console.log(resp.data.songs);
         setData(resp.data.songs);
       })
       .catch((error) => {

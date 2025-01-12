@@ -40,14 +40,17 @@ const SideBar = () => {
   const toggleMenu = () => setExpanded(!expanded);
 
   return (
-    <Nav expanded={expanded}>
+    <Nav expanded={expanded ? "true" : undefined}>
       {user.role == "admin" && (
         <>
           <div>
             <ul style={{ listStyle: "none" }}>
               {menuItems.map((menuItem) => (
-                <Li key={menuItem.id} expanded={expanded}>
-                  <LinkTitleAdm expanded={expanded} to={menuItem.path}>
+                <Li key={menuItem.id} expanded={expanded ? "true" : undefined}>
+                  <LinkTitleAdm
+                    expanded={expanded ? "true" : undefined}
+                    to={menuItem.path}
+                  >
                     {menuItem.icon}
                     <span>{menuItem.label}</span>
                   </LinkTitleAdm>
