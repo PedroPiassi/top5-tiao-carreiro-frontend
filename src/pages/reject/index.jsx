@@ -16,7 +16,7 @@ export const Reject = () => {
   const fetchData = () => {
     setLoading(true);
     getPerStatus("rejected")
-      .then((resp) => setData(resp.data.songs))
+      .then((resp) => setData(resp.data.songs.data))
       .catch((error) => {
         toast.error(error.response.data.message);
         console.error("Error fetching data:", error);
