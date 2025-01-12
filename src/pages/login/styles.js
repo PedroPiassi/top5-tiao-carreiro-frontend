@@ -9,16 +9,54 @@ export const Container = styled.div`
 `;
 
 export const SectionTile = styled.div`
-    width: 40%;
-    height: 100%;
-    background-color: var(--color-primary);
+  width: 40%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.25rem;
+  text-align: center;
+  position: relative;
+`;
 
+export const Image = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+`;
+
+export const Mask = styled.div`
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--color-primary);
+  opacity: 0.8; 
+  z-index: 2;
+`;
+
+export const Information = styled.div`
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: #fff;
-    font-size: 1.25rem;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+
+    gap: 1rem;
 `;
 
 export const SectionForm = styled.div`

@@ -10,8 +10,11 @@ import {
   ButtonStyled,
   Container,
   Form,
+  Image,
+  Information,
   InputGroup,
   InputLabelStyled,
+  Mask,
   SectionForm,
   SectionTile,
   Title,
@@ -21,6 +24,7 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { formikProps } from "../../utils/formikProps";
 import useAuthService from "../../services/auth";
 import { setUser } from "../../redux/slices/authSlice";
+import background from "../../assets/background.jpg";
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -72,8 +76,12 @@ export const Login = () => {
     <>
       <Container>
         <SectionTile>
-          <h1>Top 5</h1>
-          <h2>Tião Carreiro e Pardinho</h2>
+          <Image src={background} alt="background" />
+          <Mask />
+          <Information>
+            <h2>Top Músicas</h2>
+            <h3>Tião Carreiro e Pardinho</h3>
+          </Information>
         </SectionTile>
 
         <SectionForm>
