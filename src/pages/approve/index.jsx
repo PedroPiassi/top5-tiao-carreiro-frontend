@@ -8,15 +8,18 @@ import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
 export const Approve = () => {
-  const { getPerStatus, deleteSong, rejectSong } = useSongervice();
+  const { findAll, deleteSong, rejectSong } = useSongervice();
 
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState([]);
 
   const fetchData = () => {
     setLoading(true);
-    getPerStatus("approved")
-      .then((resp) => setData(resp.data.songs.data))
+    findAll("approved")
+      .then((resp) => {
+        console.log(resp.data.songs);
+        setData(resp.data.songs);
+      })
       .catch((error) => {
         toast.error(error.response.data.message);
         console.error("Error fetching data:", error);

@@ -18,7 +18,7 @@ export const Pending = () => {
   const fetchData = () => {
     setLoading(true);
     getPerStatus("pending")
-      .then((resp) => setData(resp.data.songs.data))
+      .then((resp) => setData(resp.data.songs))
       .catch((error) => {
         toast.error(error.response.data.message);
         console.error("Error fetching data:", error);

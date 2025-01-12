@@ -12,6 +12,9 @@ const useSongervice = () => {
                 params: { page, limit },
             });
         },
+        findAll: async (status) => {
+            return await api.get(`/songs/${status}`);
+        },
         approveSong: async (id) => {
             return await api.put(`/song/approve/${id}`);
         },

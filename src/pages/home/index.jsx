@@ -18,7 +18,7 @@ export const Home = () => {
   const fetchData = () => {
     getPerStatus("approved", page, 5)
       .then((resp) => {
-        const songs = resp.data.songs.data;
+        const songs = resp.data.songs;
         if (songs.length === 0) {
           setHasMore(false);
         } else {
