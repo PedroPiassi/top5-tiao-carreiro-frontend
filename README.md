@@ -37,6 +37,18 @@ Tire o .example do .env.exemple, para que fiue apenas .env.
 
 Rode o comando a baixo no terminal para subir o container do projeto
 
+Observação: você precisa ter o docker instalado em sua máquina.
+
 ```sh
 docker-compose up -d
+```
+
+Acesse o website em:
+```sh
+http://localhost:8081/
+```
+
+Para rodar os testes, rode o comando a baixo no terminal:
+```sh
+npm run test
 ```
