@@ -1,19 +1,26 @@
-import { Continaer, Image, Information, Rank, Title } from "./styles";
+import { Continaer, Image, Information, Link, Rank, Title } from "./styles";
 
 export const CardSong = ({ data }) => {
   return (
     <>
       {data.map((song, index) => (
-        <Continaer key={song.id}>
-          <Rank>{index + 1}</Rank>
+        <Link
+          key={song.id}
+          href={song.link}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Continaer>
+            <Rank>{index + 1}</Rank>
 
-          <Image src={song.thumbnail} alt="capa" />
+            <Image src={song.thumbnail} alt="capa" />
 
-          <Information>
-            <Title>{song.title}</Title>
-            <p>{song.views} Visualizações</p>
-          </Information>
-        </Continaer>
+            <Information>
+              <Title>{song.title}</Title>
+              <p>{song.views} Visualizações</p>
+            </Information>
+          </Continaer>
+        </Link>
       ))}
     </>
   );

@@ -12,6 +12,12 @@ export const Continaer = styled.div`
     padding: 1rem 2rem;
 
     margin-bottom: 1.5rem;
+
+    transition: transform 0.3s ease;
+
+    &:hover {
+        transform: scale(1.02);
+    }
 `;
 
 export const Image = styled.img`
@@ -23,13 +29,23 @@ export const Information = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1rem;
+
+    p {
+        color: #808080;
+    }
 `;
 
 export const Rank = styled.div`
     font-size: 1.25rem;
+    color: #808080;
 `;
 
 export const Title = styled.div`
     font-size: 1.25rem;
     font-weight: 600;
+`;
+
+export const Link = styled.a`
+    text-decoration: none;
+    color: inherit;
 `;
