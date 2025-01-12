@@ -10,14 +10,14 @@ import { Title } from "./styles";
 import { InsertSong } from "../../components/insertSong";
 
 export const Pending = () => {
-  const { getPerStatus, approveSong, rejectSong, deleteSong } = useSongervice();
+  const { findAll, approveSong, rejectSong, deleteSong } = useSongervice();
 
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState([]);
 
   const fetchData = () => {
     setLoading(true);
-    getPerStatus("pending")
+    findAll("pending")
       .then((resp) => setData(resp.data.songs))
       .catch((error) => {
         toast.error(error.response.data.message);
