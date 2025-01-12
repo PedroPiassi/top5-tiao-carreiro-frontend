@@ -1,4 +1,4 @@
-# Como rodar o backend
+# Como rodar o frontend
 
 ### Passo a passo
 
