@@ -13,17 +13,21 @@ export const Home = () => {
 
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
-  const [hasMore, setHasMore] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
 
   const fetchData = () => {
+    if (!hasMore) return;
+
     getPerStatus("approved", page, 5)
       .then((resp) => {
         const songs = resp.data.songs;
-        if (songs.length === 0) {
+        const totalCount = resp.data.total;
+
+        setData([...data, ...songs]);
+        setPage(page + 1);
+
+        if (data.length + songs.length >= totalCount) {
           setHasMore(false);
-        } else {
-          setData([...data, ...songs]);
-          setPage(page + 1);
         }
       })
       .catch((error) => {
@@ -33,13 +37,16 @@ export const Home = () => {
   };
 
   const handleInsertSong = () => {
+    setPage(1);
+    setHasMore(true);
+    setData([]);
     fetchData();
   };
 
   useEffect(() => {
     observer.current = new IntersectionObserver((entries) => {
       const lastEntry = entries[entries.length - 1];
-      if (lastEntry.isIntersecting) {
+      if (lastEntry.isIntersecting && hasMore) {
         fetchData();
       }
     });
@@ -63,7 +70,7 @@ export const Home = () => {
 
       <CardSong data={data} />
 
-      {!hasMore && (
+      {hasMore && (
         <div ref={lastDataRef}>
           <CircularProgress />
         </div>
